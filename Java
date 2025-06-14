@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class TicTacToe {
+    static char[][] board = {
+        {' ', ' ', ' '},
+        {' ', ' ', ' '},
+        {' ', ' ', ' '}
+    };
+
+    static char currentPlayer = 'X';
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean gameEnded = false;
+
+        System.out.println("Tic Tac Toe Game");
+        printBoard();
+
+        while (!gameEnded) {
+            System.out.println("Player " + currentPlayer + ", enter row and column (0, 1, or 2): ");
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
+
+            if (isValidMove(row, col)) {
+                board[row][col] = currentPlayer;
+                printBoard();
+
+                if (checkWin()) {
+                    System.out.println("Player " + currentPlayer + " wins!");
+                    gameEnded = true;
+                } else if (isDraw()) {
+                    System.out.println("It's a draw!");
+                    gameEnded = true;
+                } else {
+                    switchPlayer();
+                }
+            } else {
+                System.out.println("I
